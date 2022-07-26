@@ -1,24 +1,24 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import { ProductoModel } from '../../../models/Producto.model';
-import { ProductoService } from 'src/app/services/producto.service';
+import { VentaModel } from '../../../models/Venta.model';
+import { VentaService } from 'src/app/services/venta.service';
 import { Util } from '../../../util/util';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  templateUrl: './producto.component.html',
-  styleUrls: ['./producto.component.scss'],
+  templateUrl: './venta.component.html',
+  styleUrls: ['./venta.component.scss'],
   providers: [Util]
 })
 
-export class ProductoComponent implements OnInit {
+export class VentaComponent implements OnInit {
   formControl!: FormControl;
   metodo!: string;
   constructor(
-    private dialogRef: MatDialogRef<ProductoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ProductoModel,
-    private productoService: ProductoService,
+    private dialogRef: MatDialogRef<VentaComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: VentaModel,
+    private ventaService: VentaService,
     private _snackBar: MatSnackBar,
     private util: Util
   ) {
@@ -40,10 +40,10 @@ export class ProductoComponent implements OnInit {
   }
 
   save() {
-    this.productoService.save(this.data).subscribe({
+    this.ventaService.save(this.data).subscribe({
       next: (response) => {
         if(response){
-          this.util.openSnackBar(this._snackBar, "Producto creado con éxito.", "X", "green-snackbar");
+          this.util.openSnackBar(this._snackBar, "Usuario creado con éxito.", "X", "green-snackbar");
           this.dialogRef.close();
         }
       },
@@ -54,10 +54,10 @@ export class ProductoComponent implements OnInit {
   }
 
   update() {
-    this.productoService.update(this.data).subscribe({
+    this.ventaService.update(this.data).subscribe({
       next: (response) => {
         if(response){
-          this.util.openSnackBar(this._snackBar, "Producto actualizado con éxito.", "X", "green-snackbar");
+          this.util.openSnackBar(this._snackBar, "Usuario actualizado con éxito.", "X", "green-snackbar");
           this.dialogRef.close();
         }
       },

@@ -4,5 +4,5 @@ export interface VentaModel {
   idVenta: number;
   idCliente: number;
   idUsuario: number;
-  detalleVent: DetalleVentaModel;
+  detalleVenta: DetalleVentaModel;
 }

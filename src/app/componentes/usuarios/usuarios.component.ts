@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { UsuarioModel } from '../../Models/Usuario.model';
+import { UsuarioModel } from '../../models/Usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { UsuarioComponent } from './modal-usuario/usuario.component';
 import { MatDialog } from '@angular/material/dialog';

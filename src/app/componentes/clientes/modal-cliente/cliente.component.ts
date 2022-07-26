@@ -1,7 +1,7 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import { ClienteModel } from '../../../Models/Cliente.model';
+import { ClienteModel } from '../../../models/Cliente.model';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Util } from '../../../util/util';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -43,7 +43,7 @@ export class ClienteComponent implements OnInit {
     this.clienteService.save(this.data).subscribe({
       next: (response) => {
         if(response){
-          this.util.openSnackBar(this._snackBar, "Usuario creado con éxito.", "X", "green-snackbar");
+          this.util.openSnackBar(this._snackBar, "Cliente creado con éxito.", "X", "green-snackbar");
           this.dialogRef.close();
         }
       },
@@ -57,7 +57,7 @@ export class ClienteComponent implements OnInit {
     this.clienteService.update(this.data).subscribe({
       next: (response) => {
         if(response){
-          this.util.openSnackBar(this._snackBar, "Usuario actualizado con éxito.", "X", "green-snackbar");
+          this.util.openSnackBar(this._snackBar, "Cliente actualizado con éxito.", "X", "green-snackbar");
           this.dialogRef.close();
         }
       },

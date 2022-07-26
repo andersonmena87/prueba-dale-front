@@ -2,20 +2,24 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ProductoModel } from '../../models/Producto.model';
+import { VentaModel } from '../../models/Venta.model';
+import { VentaService } from 'src/app/services/venta.service';
 import { ProductoService } from 'src/app/services/producto.service';
-import { ProductoComponent } from '../productos/modal-producto/producto.component';
+import { VentaComponent } from '../ventas/modal-venta/venta.component';
 import { MatDialog } from '@angular/material/dialog';
-import { EliminarProductoComponent } from './modal-eliminar/eliminarProducto.component';
+import { EliminarVentaComponent } from './modal-eliminar/eliminarVenta.component';
+import { ProductoModel } from 'src/app/models/Producto.model';
 
 @Component({
-  selector: 'app-productos',
-  templateUrl: './productos.component.html',
-  styleUrls: ['./productos.component.scss']
+  selector: 'app-ventas',
+  templateUrl: './ventas.component.html',
+  styleUrls: ['./ventas.component.scss']
 })
-export class ProductosComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['nombre', 'valorUnitario','actions'];
+
+export class VentasComponent implements OnInit, AfterViewInit {
+  displayedColumns = ['nombre', 'valorUnitario', 'actions'];
   dataSource: MatTableDataSource<ProductoModel>;
+  ventas: VentaModel[] = [];
   productos: ProductoModel[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -23,6 +27,7 @@ export class ProductosComponent implements OnInit, AfterViewInit {
 
   constructor(
     public dialog: MatDialog,
+    private ventaService: VentaService,
     private productoService: ProductoService,
   ) {
     this.dataSource = new MatTableDataSource(this.productos);
@@ -44,37 +49,12 @@ export class ProductosComponent implements OnInit, AfterViewInit {
   }
 
   create() {
-    const dialogRef = this.dialog.open(ProductoComponent, {
+    const dialogRef = this.dialog.open(VentaComponent, {
       width: '50%',
       disableClose: true, data: {}
     });
 
     dialogRef.componentInstance.metodo = 'save';
-    dialogRef.afterClosed().subscribe(() => {
-      this.refreshTable();
-      this.getAll();
-    });
-  }
-
-  update(producto: ProductoModel) {
-    const dialogRef = this.dialog.open(ProductoComponent, {
-      width: '50%',
-      disableClose: true, data: producto
-    });
-
-    dialogRef.componentInstance.metodo = 'update';
-    dialogRef.afterClosed().subscribe(() => {
-      this.refreshTable();
-      this.getAll();
-    });
-  }
-
-  delete(producto: ProductoModel){
-    const dialogRef = this.dialog.open(EliminarProductoComponent, {
-      width: '40%',
-      disableClose: true, data: producto
-    });
-
     dialogRef.afterClosed().subscribe(() => {
       this.refreshTable();
       this.getAll();

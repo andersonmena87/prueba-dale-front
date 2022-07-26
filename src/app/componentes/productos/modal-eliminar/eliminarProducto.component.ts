@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject} from '@angular/core';
-import { ProductoModel } from '../../../Models/Producto.model';
+import { ProductoModel } from '../../../models/Producto.model';
 import { ProductoService } from '../../../services/producto.service';
 import { Util } from '../../../util/util';
 import { MatSnackBar } from '@angular/material/snack-bar';

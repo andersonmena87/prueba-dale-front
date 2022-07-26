@@ -1,7 +1,7 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import { UsuarioModel } from '../../../Models/Usuario.model';
+import { UsuarioModel } from '../../../models/Usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Util } from '../../../util/util';
 import { MatSnackBar } from '@angular/material/snack-bar';

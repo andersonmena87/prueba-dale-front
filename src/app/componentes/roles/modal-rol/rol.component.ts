@@ -1,7 +1,7 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import { RolModel } from '../../../Models/Rol.model';
+import { RolModel } from '../../../models/Rol.model';
 import { RolService } from 'src/app/services/rol.service';
 import { Util } from '../../../util/util';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -43,7 +43,7 @@ export class RolComponent implements OnInit {
     this.rolService.save(this.data).subscribe({
       next: (response) => {
         if(response){
-          this.util.openSnackBar(this._snackBar, "Usuario creado con éxito.", "X", "green-snackbar");
+          this.util.openSnackBar(this._snackBar, "Rol creado con éxito.", "X", "green-snackbar");
           this.dialogRef.close();
         }
       },
@@ -57,7 +57,7 @@ export class RolComponent implements OnInit {
     this.rolService.update(this.data).subscribe({
       next: (response) => {
         if(response){
-          this.util.openSnackBar(this._snackBar, "Usuario actualizado con éxito.", "X", "green-snackbar");
+          this.util.openSnackBar(this._snackBar, "Rol actualizado con éxito.", "X", "green-snackbar");
           this.dialogRef.close();
         }
       },

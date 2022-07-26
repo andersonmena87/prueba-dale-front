@@ -1,21 +1,21 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject} from '@angular/core';
-import { RolModel } from '../../../models/Rol.model';
-import { RolService } from '../../../services/rol.service';
+import { VentaModel } from '../../../models/Venta.model';
+import { VentaService } from '../../../services/venta.service';
 import { Util } from '../../../util/util';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  templateUrl: './eliminarRol.component.html',
-  styleUrls: ['./eliminarRol.component.scss'],
+  templateUrl: './eliminarVenta.component.html',
+  styleUrls: ['./eliminarVenta.component.scss'],
   providers: [Util]
 })
 
-export class EliminarRolComponent {
+export class EliminarVentaComponent {
   constructor(
-    private dialogRef: MatDialogRef<EliminarRolComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: RolModel,
-    private rolService: RolService,
+    private dialogRef: MatDialogRef<EliminarVentaComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: VentaModel,
+    private ventaService: VentaService,
     private _snackBar: MatSnackBar,
     private util: Util
   ) {
@@ -23,10 +23,10 @@ export class EliminarRolComponent {
   }
 
   delete() {
-    this.rolService.delete(this.data.idRol).subscribe({
+    this.ventaService.delete(this.data.idVenta).subscribe({
       next: (response) => {
         if(response){
-          this.util.openSnackBar(this._snackBar, "Rol eliminado con éxito.", "X", "green-snackbar");
+          this.util.openSnackBar(this._snackBar, "Compra eliminada con éxito.", "X", "green-snackbar");
           this.dialogRef.close();
         }
       },

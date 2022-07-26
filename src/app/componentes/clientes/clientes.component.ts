@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ClienteModel } from '../../Models/Cliente.model';
+import { ClienteModel } from '../../models/Cliente.model';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { ClienteComponent } from '../clientes/modal-cliente/cliente.component';
 import { MatDialog } from '@angular/material/dialog';

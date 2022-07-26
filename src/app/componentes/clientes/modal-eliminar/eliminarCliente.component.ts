@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject} from '@angular/core';
-import { ClienteModel } from '../../../Models/Cliente.model';
+import { ClienteModel } from '../../../models/Cliente.model';
 import { ClienteService } from '../../../services/cliente.service';
 import { Util } from '../../../util/util';
 import { MatSnackBar } from '@angular/material/snack-bar';

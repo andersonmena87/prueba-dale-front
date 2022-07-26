@@ -1,0 +1,9 @@
+<div class="container">
+  <button mat-button [matMenuTriggerFor]="administracion">Administración</button>
+  <mat-menu #administracion="matMenu">
+    <button mat-menu-item [routerLink]="'/usuarios'">Usuarios</button>
+    <button mat-menu-item [routerLink]="'/productos'">Productos</button>
+    <button mat-menu-item [routerLink]="'/clientes'">Clientes</button>
+  </mat-menu>
+  <button class="ventas" mat-button [routerLink]="'/ventas'">Registrar venta</button>
+</div>

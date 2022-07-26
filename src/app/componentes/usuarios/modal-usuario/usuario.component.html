@@ -11,15 +11,15 @@
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="width">
+        <mat-form-field>
           <mat-label>Cédula</mat-label>
-          <input matInput #input class="form-control" name="cedula"  disabled [(ngModel)]="data.cedula" required>
+          <input matInput #input class="form-control" name="cedula" [(ngModel)]="data.cedula" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="width">
+        <mat-form-field>
           <mat-label>Telefono</mat-label>
-          <input matInput #input class="form-control" name="telefono"  disabled [(ngModel)]="data.telefono" required>
+          <input matInput #input class="form-control" name="telefono" [(ngModel)]="data.telefono">
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
@@ -32,7 +32,7 @@
 
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input matInput #input class="form-control" name="password" type="text" [(ngModel)]="data.password"
+          <input matInput #input class="form-control" name="password" type="password" [(ngModel)]="data.password"
             maxlength="100" required/>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
