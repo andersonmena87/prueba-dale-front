@@ -1,14 +1,36 @@
 <div class="container-modal">
   <div mat-dialog-title>
-    <h3><strong>Gestionar Producto</strong></h3>
+    <h3><strong>Registro de venta</strong></h3>
   </div>
   <div mat-dialog-content>
-    <form #formControl="ngForm">
+    <form #formControl="ngForm" [formGroup]="formGroup">
         <mat-form-field>
           <mat-label>Producto</mat-label>
-          <input matInput #input class="form-control" name="producto" type="text" [(ngModel)]="data.detalleVenta.producto.nombre"
-            maxlength="100" required/>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          <input matInput #input class="form-control" formControlName="producto" type="text" readonly
+            maxlength="100"/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Valor unitario</mat-label>
+          <input matInput #input class="form-control" formControlName="valorUnitario" type="text" readonly
+            maxlength="100"/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cantidad</mat-label>
+          <input matInput #input class="form-control" formControlName="cantidad" type="number"
+          (ngModelChange)="calcularTotal($event)" maxlength="100" min="1"/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Total</mat-label>
+          <input matInput #input class="form-control" formControlName="total" type="number" readOnly
+            maxlength="100"/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cliente</mat-label>
+          <mat-select name="cliente" formControlName="idCliente">
+            <mat-option *ngFor="let cliente of clientes" [value]="cliente.idCliente">
+              {{cliente.nombre }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
     </form>
   </div>

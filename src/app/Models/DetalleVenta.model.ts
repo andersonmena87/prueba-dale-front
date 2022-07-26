@@ -5,6 +5,5 @@ export interface DetalleVentaModel {
   idVenta: number;
   idProducto: number;
   cantidad: number;
-  precio: number;
-  producto: ProductoModel
+  total: number;
 }

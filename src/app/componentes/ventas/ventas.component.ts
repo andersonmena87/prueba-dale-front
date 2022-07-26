@@ -48,13 +48,12 @@ export class VentasComponent implements OnInit, AfterViewInit {
     })
   }
 
-  create() {
+  create(producto: ProductoModel) {
     const dialogRef = this.dialog.open(VentaComponent, {
       width: '50%',
-      disableClose: true, data: {}
+      disableClose: true, data: producto
     });
 
-    dialogRef.componentInstance.metodo = 'save';
     dialogRef.afterClosed().subscribe(() => {
       this.refreshTable();
       this.getAll();
