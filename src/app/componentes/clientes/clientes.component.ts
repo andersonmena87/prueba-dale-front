@@ -14,7 +14,7 @@ import { EliminarClienteComponent } from './modal-eliminar/eliminarCliente.compo
   styleUrls: ['./clientes.component.scss']
 })
 export class ClientesComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['nombre', 'actions'];
+  displayedColumns = ['nombre', 'apellido', 'cedula', 'telefono','actions'];
   dataSource: MatTableDataSource<ClienteModel>;
   clientes: ClienteModel[] = [];
 
@@ -38,6 +38,7 @@ export class ClientesComponent implements OnInit, AfterViewInit {
         this.clientes = response;
         this.dataSource = new MatTableDataSource(this.clientes);
         this.dataSource.sort = this.sort;
+        this.paginator._intl.itemsPerPageLabel = 'Items por página';
         this.dataSource.paginator = this.paginator;
       }
     })

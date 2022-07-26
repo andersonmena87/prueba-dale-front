@@ -38,6 +38,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
         this.usuarios = response;
         this.dataSource = new MatTableDataSource(this.usuarios);
         this.dataSource.sort = this.sort;
+        this.paginator._intl.itemsPerPageLabel = 'Items por página';
         this.dataSource.paginator = this.paginator;
       }
     })

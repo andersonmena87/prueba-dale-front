@@ -4,20 +4,18 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { VentaModel } from '../../models/Venta.model';
 import { VentaService } from 'src/app/services/venta.service';
-import { ProductoService } from 'src/app/services/producto.service';
-import { VentaComponent } from '../ventas/modal-venta/venta.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductoModel } from 'src/app/models/Producto.model';
 
 @Component({
-  selector: 'app-ventas',
-  templateUrl: './ventas.component.html',
-  styleUrls: ['./ventas.component.scss']
+  selector: 'app-detalleVentas',
+  templateUrl: './detalleVentas.component.html',
+  styleUrls: ['./detalleVentas.component.scss']
 })
 
-export class VentasComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['nombre', 'valorUnitario', 'actions'];
-  dataSource: MatTableDataSource<ProductoModel>;
+export class DetalleVentasComponent implements OnInit, AfterViewInit {
+  displayedColumns = ['cliente', 'producto', 'valorUnitario', 'cantidad', 'total'];
+  dataSource: MatTableDataSource<VentaModel>;
   ventas: VentaModel[] = [];
   productos: ProductoModel[] = [];
 
@@ -27,9 +25,8 @@ export class VentasComponent implements OnInit, AfterViewInit {
   constructor(
     public dialog: MatDialog,
     private ventaService: VentaService,
-    private productoService: ProductoService,
   ) {
-    this.dataSource = new MatTableDataSource(this.productos);
+    this.dataSource = new MatTableDataSource(this.ventas);
    }
 
   ngOnInit(): void {
@@ -37,27 +34,15 @@ export class VentasComponent implements OnInit, AfterViewInit {
   }
 
   getAll(){
-    this.productoService.getAll().subscribe({
+    this.ventaService.getAll().subscribe({
       next: (response) => {
-        this.productos = response;
-        this.dataSource = new MatTableDataSource(this.productos);
+        this.ventas = response;
+        this.dataSource = new MatTableDataSource(this.ventas);
         this.dataSource.sort = this.sort;
         this.paginator._intl.itemsPerPageLabel = 'Items por página';
         this.dataSource.paginator = this.paginator;
       }
     })
-  }
-
-  create(producto: ProductoModel) {
-    const dialogRef = this.dialog.open(VentaComponent, {
-      width: '50%',
-      disableClose: true, data: producto
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.refreshTable();
-      this.getAll();
-    });
   }
 
   search(event: Event) {

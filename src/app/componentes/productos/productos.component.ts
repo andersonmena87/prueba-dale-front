@@ -38,6 +38,7 @@ export class ProductosComponent implements OnInit, AfterViewInit {
         this.productos = response;
         this.dataSource = new MatTableDataSource(this.productos);
         this.dataSource.sort = this.sort;
+        this.paginator._intl.itemsPerPageLabel = 'Items por página';
         this.dataSource.paginator = this.paginator;
       }
     })

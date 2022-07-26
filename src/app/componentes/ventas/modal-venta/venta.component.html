@@ -18,6 +18,9 @@
           <mat-label>Cantidad</mat-label>
           <input matInput #input class="form-control" formControlName="cantidad" type="number"
           (ngModelChange)="calcularTotal($event)" maxlength="100" min="1"/>
+          <mat-error *ngIf="formGroup.value.cantidad < 0">
+            Debe ser mayor a 0
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Total</mat-label>
@@ -26,16 +29,16 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Cliente</mat-label>
-          <mat-select name="cliente" formControlName="idCliente">
+          <mat-select name="cliente" formControlName="idCliente" required>
             <mat-option *ngFor="let cliente of clientes" [value]="cliente.idCliente">
-              {{cliente.nombre }}
+              {{cliente.nombre}} {{cliente.apellido}}
             </mat-option>
           </mat-select>
         </mat-form-field>
     </form>
   </div>
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!formControl.valid" (click)="processData()">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup.value.idCliente || formGroup.value.cantidad < 0" (click)="processData()">
       <span>Guardar</span>
     </button>
     <button mat-raised-button color="primary" (click)="cancel()" tabindex="-1">Cancelar</button>

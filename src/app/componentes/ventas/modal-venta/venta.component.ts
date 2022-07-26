@@ -42,8 +42,8 @@ export class VentaComponent implements OnInit {
     fb: FormBuilder
   ) {
     this.formGroup = fb.group({
-      producto: this.data.nombre,
-      valorUnitario: this.data.valorUnitario,
+      producto: [{value: this.data.nombre, disabled: true}],
+      valorUnitario: [{value: this.data.valorUnitario, disabled: true}],
       idCliente: 0,
       idUsuario: 1,
       cantidad: 1,
@@ -90,12 +90,12 @@ export class VentaComponent implements OnInit {
   }
 
   getErrorMessage() {
-    //return this.formControl.hasError('required') ? 'Campo obligatorio' : '';
+    return 'Campo obligatorio';
   }
 
-  calcularTotal(event: string) {
-    const cantidad:number = parseInt(event, 10);
-    let total:number = parseInt(this.formGroup.value.valorUnitario, 10);
+  calcularTotal(valor: string) {
+    const cantidad:number = parseInt(valor, 10);
+    let total:number = parseInt(this.formGroup.get('valorUnitario')?.value, 10);
     total *= cantidad;
     this.formGroup.patchValue({
       total

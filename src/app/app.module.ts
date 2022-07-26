@@ -36,6 +36,7 @@ import { VentasComponent } from './componentes/ventas/ventas.component';
 import { VentaComponent } from './componentes/ventas/modal-venta/venta.component';
 import { EliminarVentaComponent } from './componentes/ventas/modal-eliminar/eliminarVenta.component';
 import { MenuComponent } from './componentes/menu/menu.component';
+import { DetalleVentasComponent } from './componentes/detalleVentas/detalleVentas.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { MenuComponent } from './componentes/menu/menu.component';
     VentasComponent,
     VentaComponent,
     EliminarVentaComponent,
-    MenuComponent
+    MenuComponent,
+    DetalleVentasComponent
   ],
   imports: [
     BrowserModule,
