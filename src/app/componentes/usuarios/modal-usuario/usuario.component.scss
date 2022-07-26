@@ -1,0 +1,17 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .mat-form-field {
+    margin-bottom: 2%;
+  }
+
+  .width {
+    width: 25%;
+  }
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+}

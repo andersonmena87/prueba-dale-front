@@ -1,0 +1,41 @@
+<div class="container-modal">
+  <div mat-dialog-title>
+    <h3><strong>Gestionar Cliente</strong></h3>
+  </div>
+  <div mat-dialog-content>
+    <form #formControl="ngForm">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput #input class="form-control" name="nombre" type="text" [(ngModel)]="data.nombre"
+            maxlength="100" required/>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Apellido</mat-label>
+          <input matInput #input class="form-control" name="apellido" type="text" [(ngModel)]="data.apellido"
+            maxlength="100" required/>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Cédula</mat-label>
+          <input matInput #input class="form-control" name="cedula" type="text" [(ngModel)]="data.cedula"
+            maxlength="100" required/>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Telefono</mat-label>
+          <input matInput #input class="form-control" name="telefono" type="text" [(ngModel)]="data.telefono"
+            maxlength="50"/>
+        </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!formControl.valid" (click)="processData()">
+      <span>Guardar</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="cancel()" tabindex="-1">Cancelar</button>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="container-modal">
+  <div mat-dialog-title>
+    <h3><strong>Eliminar Usuario?</strong></h3>
+  </div>
+  <div mat-dialog-content>
+   Desea eliminar los datos del usuario {{data.nombre}}?
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit" (click)="delete()">
+      <span>Acpetar</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="cancel()" tabindex="-1">Cancelar</button>
+  </div>
+</div>

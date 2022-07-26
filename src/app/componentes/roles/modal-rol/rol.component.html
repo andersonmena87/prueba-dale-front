@@ -1,0 +1,21 @@
+<div class="container-modal">
+  <div mat-dialog-title>
+    <h3><strong>Gestionar Rol</strong></h3>
+  </div>
+  <div mat-dialog-content>
+    <form #formControl="ngForm">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput #input class="form-control" name="nombre" type="text" [(ngModel)]="data.nombre"
+            maxlength="100" required/>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!formControl.valid" (click)="processData()">
+      <span>Guardar</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="cancel()" tabindex="-1">Cancelar</button>
+  </div>
+</div>
