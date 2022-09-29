@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  serviceUrl: "https://localhost:7149"
+  serviceUrl: "https://localhost:44349"
 };
 

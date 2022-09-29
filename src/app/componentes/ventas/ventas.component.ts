@@ -8,11 +8,13 @@ import { ProductoService } from 'src/app/services/producto.service';
 import { VentaComponent } from '../ventas/modal-venta/venta.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductoModel } from 'src/app/models/Producto.model';
+import { Util } from 'src/app/util/util';
 
 @Component({
   selector: 'app-ventas',
   templateUrl: './ventas.component.html',
-  styleUrls: ['./ventas.component.scss']
+  styleUrls: ['./ventas.component.scss'],
+  providers: [Util]
 })
 
 export class VentasComponent implements OnInit, AfterViewInit {
@@ -26,8 +28,8 @@ export class VentasComponent implements OnInit, AfterViewInit {
 
   constructor(
     public dialog: MatDialog,
-    private ventaService: VentaService,
     private productoService: ProductoService,
+    private util: Util
   ) {
     this.dataSource = new MatTableDataSource(this.productos);
    }
@@ -42,7 +44,7 @@ export class VentasComponent implements OnInit, AfterViewInit {
         this.productos = response;
         this.dataSource = new MatTableDataSource(this.productos);
         this.dataSource.sort = this.sort;
-        this.paginator._intl.itemsPerPageLabel = 'Items por página';
+        this.paginator._intl =  this.util.TranslatePaginator();
         this.dataSource.paginator = this.paginator;
       }
     })

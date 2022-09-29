@@ -7,11 +7,13 @@ import { ProductoService } from 'src/app/services/producto.service';
 import { ProductoComponent } from '../productos/modal-producto/producto.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EliminarProductoComponent } from './modal-eliminar/eliminarProducto.component';
+import { Util } from 'src/app/util/util';
 
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
-  styleUrls: ['./productos.component.scss']
+  styleUrls: ['./productos.component.scss'],
+  providers: [Util]
 })
 export class ProductosComponent implements OnInit, AfterViewInit {
   displayedColumns = ['nombre', 'valorUnitario','actions'];
@@ -24,6 +26,7 @@ export class ProductosComponent implements OnInit, AfterViewInit {
   constructor(
     public dialog: MatDialog,
     private productoService: ProductoService,
+    private util: Util
   ) {
     this.dataSource = new MatTableDataSource(this.productos);
    }
@@ -38,7 +41,7 @@ export class ProductosComponent implements OnInit, AfterViewInit {
         this.productos = response;
         this.dataSource = new MatTableDataSource(this.productos);
         this.dataSource.sort = this.sort;
-        this.paginator._intl.itemsPerPageLabel = 'Items por página';
+        this.paginator._intl =  this.util.TranslatePaginator();
         this.dataSource.paginator = this.paginator;
       }
     })

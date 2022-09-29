@@ -7,11 +7,13 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import { ClienteComponent } from '../clientes/modal-cliente/cliente.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EliminarClienteComponent } from './modal-eliminar/eliminarCliente.component';
+import { Util } from 'src/app/util/util';
 
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.scss']
+  styleUrls: ['./clientes.component.scss'],
+  providers: [Util]
 })
 export class ClientesComponent implements OnInit, AfterViewInit {
   displayedColumns = ['nombre', 'apellido', 'cedula', 'telefono','actions'];
@@ -24,6 +26,7 @@ export class ClientesComponent implements OnInit, AfterViewInit {
   constructor(
     public dialog: MatDialog,
     private clienteService: ClienteService,
+    private util: Util
   ) {
     this.dataSource = new MatTableDataSource(this.clientes);
    }
@@ -38,7 +41,7 @@ export class ClientesComponent implements OnInit, AfterViewInit {
         this.clientes = response;
         this.dataSource = new MatTableDataSource(this.clientes);
         this.dataSource.sort = this.sort;
-        this.paginator._intl.itemsPerPageLabel = 'Items por página';
+        this.paginator._intl =  this.util.TranslatePaginator();
         this.dataSource.paginator = this.paginator;
       }
     })

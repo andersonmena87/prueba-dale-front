@@ -7,11 +7,13 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { UsuarioComponent } from './modal-usuario/usuario.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EliminarUsuarioComponent } from './modal-eliminar/eliminarUsuario.component';
+import { Util } from 'src/app/util/util';
 
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.scss']
+  styleUrls: ['./usuarios.component.scss'],
+  providers: [Util]
 })
 export class UsuariosComponent implements OnInit, AfterViewInit {
   displayedColumns = ['nombre', 'cedula', 'telefono', 'username', 'actions'];
@@ -24,6 +26,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
   constructor(
     public dialog: MatDialog,
     private usuarioService: UsuarioService,
+    private util: Util
   ) {
     this.dataSource = new MatTableDataSource(this.usuarios);
    }
@@ -38,7 +41,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
         this.usuarios = response;
         this.dataSource = new MatTableDataSource(this.usuarios);
         this.dataSource.sort = this.sort;
-        this.paginator._intl.itemsPerPageLabel = 'Items por página';
+        this.paginator._intl =  this.util.TranslatePaginator();
         this.dataSource.paginator = this.paginator;
       }
     })

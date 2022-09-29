@@ -6,11 +6,13 @@ import { VentaModel } from '../../models/Venta.model';
 import { VentaService } from 'src/app/services/venta.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductoModel } from 'src/app/models/Producto.model';
+import { Util } from 'src/app/util/util';
 
 @Component({
   selector: 'app-detalleVentas',
   templateUrl: './detalleVentas.component.html',
-  styleUrls: ['./detalleVentas.component.scss']
+  styleUrls: ['./detalleVentas.component.scss'],
+  providers: [Util]
 })
 
 export class DetalleVentasComponent implements OnInit, AfterViewInit {
@@ -25,6 +27,7 @@ export class DetalleVentasComponent implements OnInit, AfterViewInit {
   constructor(
     public dialog: MatDialog,
     private ventaService: VentaService,
+    private util: Util
   ) {
     this.dataSource = new MatTableDataSource(this.ventas);
    }
@@ -39,7 +42,7 @@ export class DetalleVentasComponent implements OnInit, AfterViewInit {
         this.ventas = response;
         this.dataSource = new MatTableDataSource(this.ventas);
         this.dataSource.sort = this.sort;
-        this.paginator._intl.itemsPerPageLabel = 'Items por página';
+        this.paginator._intl =  this.util.TranslatePaginator();
         this.dataSource.paginator = this.paginator;
       }
     })
